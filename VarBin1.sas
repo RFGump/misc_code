@@ -1,3 +1,4 @@
+/* Equal exposure bins */
 /* Create cutpoints for continuous variables (250 bins) */
 options mlogic mprint merror;
 
