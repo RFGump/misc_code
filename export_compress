@@ -1,0 +1,15 @@
+%macro exscore (low=, high=, fnum=);
+  proc export data=catalyst.temp (where=(randnum >= &low & randnum < &high))
+    outfile = "/path/out&fnum..csv"
+    replace
+    dbms=dlm;
+    
+    delimiter = '|';
+  run;
+  
+  %sysexec(tar -czvf /path/out&fnum..tar.gz /path/out&fnum..csv);
+  %sysexec(rm /path/out&fnum..csv);
+ 
+%mend exscore;
+
+%exscore(low=0, high=.04, fnum=01);
